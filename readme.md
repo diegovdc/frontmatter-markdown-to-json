@@ -2,7 +2,7 @@
 
 Converts a `frontmatter markdown` collection of files into one or several json files, each having an array with the front matter data and the body (parsed as HTML) of each file.
 
-## Structure of the output
+## Structure of the input folders
 Folder structure must be:
 ```
 input_folder
