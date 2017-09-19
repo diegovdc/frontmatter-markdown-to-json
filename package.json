@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "coral-fs-tasks": "^1.1.0",
+    "coral-fs-tasks": "^1.1.1",
     "data.task": "^3.1.1",
     "format-json-pretty": "^1.0.1",
     "front-matter": "^2.1.2",
