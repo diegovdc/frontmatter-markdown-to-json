@@ -37,7 +37,7 @@ let groupFilesByFolder = R.compose(
 )
 
 let fileTask = path => R.composeK(
-	file => Task.of({folder: path.split('/').slice(2)[0], content: file}),
+	file => Task.of({folder: path.replace(input_dir, '').split('/')[0], content: file}),
 	readAsText('utf8')
 )(path)
 
