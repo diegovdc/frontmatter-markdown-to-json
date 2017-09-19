@@ -14,8 +14,8 @@ const input_dir = R.compose(
 	xs => xs[0] !== undefined && xs[0] !== '--in=' ? xs[0] : './content/',
 	R.filter(s => s.indexOf('--in=') === 0)
 )(process.argv)
-
 console.log("input_dir", input_dir);
+
 const output_dir = R.compose(
 	s => path.join(process.cwd(), s),
 	s => s.replace('--out=', ''),
