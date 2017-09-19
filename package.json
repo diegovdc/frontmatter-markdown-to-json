@@ -1,6 +1,6 @@
 {
-  "name": "json-to-markdown",
-  "version": "1.0.0",
+  "name": "frontmatter-markdown-to-json",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "coral-fs-tasks": "^1.0.1",
     "data.task": "^3.1.1",
+    "format-json-pretty": "^1.0.1",
     "front-matter": "^2.1.2",
     "glob": "^7.1.2",
     "marked": "^0.3.6",
