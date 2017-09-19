@@ -22,6 +22,7 @@ const output_dir = R.compose(
 	xs => xs[0] !== undefined && xs[0] !== '--out=' ? xs[0] : './',
 	R.filter(s => s.indexOf('--out=') === 0)
 )(process.argv)
+console.log("output_dir", output_dir);
 
 
 const getDir = dir => glob.sync(`${input_dir}/**/*.md`)
