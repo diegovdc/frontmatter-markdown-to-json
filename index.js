@@ -7,6 +7,7 @@ const R = require('ramda')
 const {readAsText, writeFile} = require('coral-fs-tasks')
 const Task = require('data.task')
 const formatJson = require('format-json-pretty');
+// const log = x => {console.log(x); return x}
 
 const input_dir = R.compose(
 	s => path.join(process.cwd(), s),
@@ -34,11 +35,19 @@ let parse = R.compose(
 
 let groupFilesByFolder = R.compose(
 	R.map(R.map(x => parse(x.content))),
-	R.groupBy(x => x.folder)
+	R.groupBy(x => x.folder),
 )
 
+let getFolder = (input_dir, path) => R.pipe(
+	R.replace(input_dir, ''),
+	R.split('/'),
+	R.reject(R.isEmpty),
+	R.head,
+)(path)/*? */
+
+
 let fileTask = path => R.composeK(
-	file => Task.of({folder: path.replace(input_dir, '').split('/')[0], content: file}),
+	file => Task.of({folder: getFolder(input_dir, path), content: file}),
 	readAsText('utf8')
 )(path)
 
@@ -46,12 +55,13 @@ const writeJsons = obj =>
 	R.sequence(
 		Task.of, 
 		R.map(key => 
-			writeFile(output_dir+'/', {filename:key+'.json' ,buffer:JSON.stringify(obj[key])}), 
+			writeFile(output_dir+'/', {filename:key+'.json', buffer:JSON.stringify(obj[key])}), 
 		Object.keys(obj))
 	)
 
 
 let files = R.sequence(Task.of, R.map(fileTask, getDir()))
 	.map(groupFilesByFolder)
+	.map(R.map(R.map(R.omit('frontmatter'))))
 	.chain(writeJsons)
 	.fork(console.log, s => console.log('Alles Gut!'))
