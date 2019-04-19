@@ -14,7 +14,7 @@
     "format-json-pretty": "^1.0.1",
     "front-matter": "^2.1.2",
     "glob": "^7.1.2",
-    "marked": "^0.3.6",
+    "marked": "0.6.2",
     "ramda": "^0.24.1"
   }
 }
